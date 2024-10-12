@@ -38,7 +38,7 @@ let config = {
     VELOCITY_DISSIPATION: 0.2,
     PRESSURE: 1,
     PRESSURE_ITERATIONS: 1,
-    CURL: 1,
+    CURL: 10,
     SPLAT_RADIUS: 0.07,
     SPLAT_FORCE: 250,
     PAUSED: false,
