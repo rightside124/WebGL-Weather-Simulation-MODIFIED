@@ -44,6 +44,7 @@ let config = {
     PAUSED: false,
     BACK_COLOR: { r: 0, g: 0, b: 0 },
     TRANSPARENT: false,
+    timeScale: 1.0 
 }
 
 function pointerPrototype () {
@@ -57,6 +58,15 @@ function pointerPrototype () {
     this.down = false;
     this.moved = false;
     this.color = [30, 0, 300];
+}
+
+function update () {
+    const dt = calcDeltaTime() * config.timeScale;
+    if (!config.PAUSED) {
+        step(dt);
+    }
+    render(null);
+    requestAnimationFrame(update);
 }
 
 let pointers = [];
@@ -171,6 +181,7 @@ function startGUI () {
     gui.add(config, 'VELOCITY_DISSIPATION', 0, 0.2).name('velocity dissipation');
     gui.add(config, 'PRESSURE', 0.0, 1.0).name('pressure');
     gui.add(config, 'CURL', 0, 10).name('vorticity').step(1);
+    gui.add(config, 'timeScale', 0.1, 2.0).name('Time Scale').step(0.1);
     gui.add(config, 'SPLAT_RADIUS', 0.01, 1.0).name('splat radius');
     gui.add(config, 'PAUSED').name('paused').listen();
 
