@@ -60,15 +60,6 @@ function pointerPrototype () {
     this.color = [30, 0, 300];
 }
 
-function update () {
-    const dt = calcDeltaTime() * config.timeScale;
-    if (!config.PAUSED) {
-        step(dt);
-    }
-    render(null);
-    requestAnimationFrame(update);
-}
-
 let pointers = [];
 let splatStack = [];
 pointers.push(new pointerPrototype());
@@ -877,8 +868,8 @@ let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
 update();
 
-function update () {
-    const dt = calcDeltaTime();
+    function update () {
+    const dt = calcDeltaTime() * config.timeScale;
     if (resizeCanvas())
         initFramebuffers();
     applyInputs();
