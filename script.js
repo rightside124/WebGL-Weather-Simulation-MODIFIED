@@ -44,7 +44,7 @@ let config = {
     PAUSED: false,
     BACK_COLOR: { r: 0, g: 0, b: 0 },
     TRANSPARENT: false,
-    timeScale: 1.0 
+    timeScale: 0.5 
 }
 
 function pointerPrototype () {
