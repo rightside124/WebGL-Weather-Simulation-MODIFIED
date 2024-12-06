@@ -60,18 +60,6 @@ function pointerPrototype () {
     this.color = [30, 0, 300];
 }
 
-let images = [
-    { url: "image1.png", visible: true },
-    // ... add more image objects here ...
-];
-
-let config = {
-    // ... other configuration options ...
-    images: images,
-    backgroundImage: "background.jpg",
-    useBackgroundColor: false
-};
-
 let pointers = [];
 let splatStack = [];
 pointers.push(new pointerPrototype());
@@ -211,9 +199,7 @@ function startGUI () {
     if (isMobile())
         gui.close();
 
-    const imageFolder = gui.addFolder('Images');
-    for (let i = 0; i < config.images.length; i++) {
-    imageFolder.add(config.images[i], 'visible').name(`Image ${i + 1} Visibility`);
+
 }
 }
 
@@ -1020,21 +1006,6 @@ function render (target) {
     if (target == null && config.TRANSPARENT)
         drawCheckerboard(fbo);
     drawDisplay(fbo, width, height);
-
-        // Render images
-    for (let i = 0; i < images.length; i++) {
-        if (config.images[i].visible) {
-            // Bind the image texture
-            gl.activeTexture(gl.TEXTURE0 + i);
-            gl.bindTexture(gl.TEXTURE_2D, config.images[i].texture);
-
-            // Set up the image shader
-            imageShader.bind();
-            gl.uniform1i(imageShader.uniforms.uImageTexture, i);
-
-            // Draw the image quad
-            gl.drawArrays(gl.TRIANGLES, 0, 6);
-}
 
 function drawColor (fbo, color) {
     colorProgram.bind();
