@@ -175,8 +175,6 @@ function startGUI () {
     gui.add(config, 'timeScale', 0.1, 2.0).name('Time Scale').step(0.1);
     gui.add(config, 'SPLAT_RADIUS', 0.01, 1.0).name('splat radius');
     gui.add(config, 'PAUSED').name('paused').listen();
-    gui.add(config, 'useBackgroundColor').name('Use Background Color');
-    gui.add(config, 'backgroundImage').name('Background Image');
 
     gui.add({ fun: () => {
         splatStack.push(parseInt(Math.random() * 20) + 5);
@@ -198,9 +196,6 @@ function startGUI () {
 
     if (isMobile())
         gui.close();
-
-
-}
 }
 
 function isMobile () {
@@ -729,9 +724,6 @@ function initFramebuffers () {
     const r       = ext.formatR;
     const filtering = ext.supportLinearFiltering ? gl.LINEAR : gl.NEAREST;
 
-    for (let i = 0; i < images.length; i++) {
-    images[i].texture = loadImageTexture(images[i].url);
-
     if (cloud == null)
         cloud = createDoubleFBO(cloudRes.width, cloudRes.height, rgba.internalFormat, rgba.format, texType, filtering);
     else
@@ -745,7 +737,6 @@ function initFramebuffers () {
     divergence = createFBO      (simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
     curl       = createFBO      (simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
     pressure   = createDoubleFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
-    backgroundTexture = loadImageTexture(config.backgroundImage);
 
 }
 
@@ -1006,6 +997,7 @@ function render (target) {
     if (target == null && config.TRANSPARENT)
         drawCheckerboard(fbo);
     drawDisplay(fbo, width, height);
+}
 
 function drawColor (fbo, color) {
     colorProgram.bind();
