@@ -1,6 +1,8 @@
-# WebGL Weather Simulation
+# WebGL Hurricane Simulation
 
-[Play here](https://ther0n.github.io/WebGL-Weather-Simulation-GEO250/)
+Hold left-click and spin your cursor to get clouds, which will soon form into a hurricane..
+
+[Play here](https://rightside124.github.io/WebGL-Weather-Simulation-MODIFIED/)
 
 ## References
 
